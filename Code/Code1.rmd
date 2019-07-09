@@ -84,7 +84,8 @@ map+
 geom_point(aes(x=lon, y=lat, size=(count), colour = (count)), data=ActiveBusiness1, alpha=.5)+
 scale_colour_gradient(low="grey", high="red")
 ```
-![](Output/Plot1.PNG)
+#refer to output plot: Plot1.PNG
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot1.PNG)
 
 #plot less granular map
 ```{r plot2}
@@ -92,3 +93,5 @@ map+
 geom_point(aes(x=longitude, y=latitude, size=(count2), colour = (count2)), data=ActiveBusiness2, alpha=.5) +
 scale_colour_gradient(low="grey", high="red") 
 ```
+#refer to output plot: Plot2.PNG
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot2.PNG)
