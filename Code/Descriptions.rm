@@ -1,1 +1,23 @@
-Project was done by R, and code is saved as rmd (R Markdown) files.
+*Project was done by R, and code is saved as rmd (R Markdown) files.*
+
+### Code1 ###
+This code is trying to identify the pockets in San Francisco with a high concentration of business.
+
+To look at the concentration of active businesses in San Francisco, we need to identify the active business and 
+filter out those with actual business locations outside of San Francisco. In this case, businesses without a business end date 
+are considered active business. 
+
+Variable “City” in the dataset has multiple input representing San Francisco, 
+to better extract businesses in required city and for the ease of plotting, 
+library “zipcode” was used and matched zipcodes with actual city names/longitude/latitude. 
+
+With a simple table output, zipcode 94110, 94103, 94107 and 94109 have the most active businesses in San Francisco. 
+Please find below the map visualizations to better look at the concentration areas. 
+Most active businesses concentrate in northeast area, such as financial district, 
+and some mid area such as mission district and Bernal Heights. To see it more clearly, 
+a less granular map was created as well using the joined zipcode dataset, 
+which tells the same story that the active businesses tend to be more concentrate in areas that are more financially active 
+and with more population.
+
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot1.PNG)
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot2.PNG)
