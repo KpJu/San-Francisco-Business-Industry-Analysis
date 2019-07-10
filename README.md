@@ -12,7 +12,6 @@ This dataset includes the locations of businesses that pay taxes to the City and
 
 **Data files are also uploaded:**
 
-* sf_business_dataset.csv
 * data_dictionary.xlsx
 * NAICS.csv -- a tab from data_dictionary.csv, to mapping industry type
 
