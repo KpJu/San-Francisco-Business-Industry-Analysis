@@ -3,7 +3,7 @@
 ### Background
 From the base for gold rush to the hub of high-tech, San Francisco has become an important center of finance and technology. It will interesting to see the change/transition of the popular industries in this fast-paced city. Where are the pockets of high concentration of active business? What are the different industry types that have emerged or declined in San Francisco over the years?   
 
-In this project, I used R to generate some data analysis and visualization to take a closer look at the business/industry trend. Codes are saved as RMD (R Markdown) files. Results including visualizations are saved in the Output folder.
+In this project, I used R to generate some data analysis and visualization to take a closer look at the business/industry trend. Codes are saved as RMD (R Markdown) files. Brief discussions about results are saved in the Code folder (Description.md), and visualizations are saved in the Output folder.
 
 ### Data
 Open source dataset: [DataSF](https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis) 
