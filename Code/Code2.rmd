@@ -1,0 +1,70 @@
+#####Continue from Code1:
+***
+
+### Look for less popular industries which could benefit from a tax break by the county to promote business growth
+```{r}
+sort(table(droplevels(ActiveBusiness)$NAICS.Code))
+sort(table(droplevels(ActiveBusiness)$NAICS.Code.Description))
+NAICS2 <- ActiveBusiness[,c("NAICS.Code","Description")]
+Popular_Business <- ddply(ActiveBusiness, .(NAICS.Code), "nrow")
+Popular_Business <- merge(Popular_Business,NAICS, by.x="NAICS.Code", by.y="NAICS_Code")
+Popular_Business <- Popular_Business[order(Popular_Business$nrow),]
+Popular_Business
+```
+
+#refer to output table: Table.PNG
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Table.PNG)
+
+### Look at trends of industries emerging over years
+```{r}
+library(plyr)
+library(ggplot2)
+sort(table(SF$NAICS.Code))
+SF$start.year = format(as.Date(SF$Business.Start.Date, format="%m/%d/%Y"),"%Y")
+table(droplevels(SF)$start.year, droplevels(SF)$NAICS.Code)
+table(SF$start.year)
+
+SF <- merge(SF, NAICS, by.x="NAICS.Code", by.y="NAICS_Code")
+SF1 <- subset(SF, SF$NAICS.Code != "" & SF$NAICS.Code !="8100-8139" & SF$NAICS.Code !="2200-2299"& 
+              SF$NAICS.Code !="5240-5249"& SF$NAICS.Code !="8100-8399"& SF$NAICS.Code !="3100-3399"&
+              SF$NAICS.Code !="5600-5699"& SF$NAICS.Code !="4200-4299"& SF$NAICS.Code !="5100-5199"&
+              SF$NAICS.Code !="8110-8139")
+sort(table(droplevels(SF1)$NAICS.Code))
+industry <- count(SF1, vars=c("Description","start.year"))
+industry$year_band <- ifelse(industry$start.year >= 1849 & industry$start.year<=1968,"1968-",
+                             ifelse(industry$start.year >=2017,"2017+",industry$start.year))
+
+industry1 <- industry[industry$start.year>=1985,]
+plottable1 <- aggregate(industry1$freq, by=list(Year=industry1$year_band, NAICS=industry1$Description),FUN=sum)
+ggplot(plottable1, aes(Year, x)) + 
+  geom_line(aes(col = NAICS, group=NAICS)) 
+```
+#refer to output plot: Plot3.PNG
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot3.PNG)
+
+
+### Look and Closed business
+```{r}
+library(plyr)
+library(ggplot2)
+SF$end.year = format(as.Date(SF$Business.End.Date, format="%m/%d/%Y"),"%Y")
+table(droplevels(SF)$end.year, droplevels(SF)$NAICS.Code)
+table(SF$end.year)
+SF <- merge(SF, NAICS, by.x="NAICS.Code", by.y="NAICS_Code")
+SF2 <- subset(SF, SF$NAICS.Code != "" & SF$NAICS.Code !="8100-8139" & SF$NAICS.Code !="2200-2299"& 
+                SF$NAICS.Code !="5240-5249"& SF$NAICS.Code !="8100-8399"& SF$NAICS.Code !="3100-3399"&
+                SF$NAICS.Code !="5600-5699"& SF$NAICS.Code !="4200-4299"& SF$NAICS.Code !="5100-5199"&
+                SF$NAICS.Code !="8110-8139")
+SF2<-SF2[complete.cases(SF2$end.year),]
+sort(table(droplevels(SF2)$Description))
+industry2 <- count(SF2, vars=c("Description","end.year"))
+industry2$year_band <- ifelse(industry2$end.year >= 1957 & industry2$end.year<=2011,"2011-",industry2$end.year)
+plottable1 <- aggregate(industry2$freq, by=list(Year=industry2$year_band, NAICS=industry2$Description),FUN=sum)
+ggplot(plottable1, aes(Year, x)) + 
+  geom_line(aes(col = NAICS, group=NAICS)) 
+```
+
+#refer to output plot: Plot4.PNG
+![](https://github.com/KpJu/San-Francisco-Business-Industry-Analysis/blob/master/Output/Plot4.PNG)
+
+
